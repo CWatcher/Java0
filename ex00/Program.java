@@ -2,16 +2,16 @@ package ex00;
 class Program {
 
 	public static void main(String[] args) {
-		int n = -123456;
-		n = (n + (n >> 31)) ^ (n >> 31);
+		int number = -123456;
+		number = (number + (number >> 31)) ^ (number >> 31);
 
-		int	r = n % 10;
-		r += (n /= 10 ) % 10;
-		r += (n /= 10 ) % 10;
-		r += (n /= 10 ) % 10;
-		r += (n /= 10 ) % 10;
-		r += (n / 10 ) % 10;
+		int	result = number % 10;
+		result += (number /= 10) % 10;
+		result += (number /= 10) % 10;
+		result += (number /= 10) % 10;
+		result += (number /= 10) % 10;
+		result += (number / 10) % 10;
 
-		System.out.println( r );
+		System.out.println(result);
 	}
 }

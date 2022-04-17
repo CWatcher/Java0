@@ -3,38 +3,39 @@ package ex02;
 import java.util.Scanner;
 
 public class Program {
+	static final int LAST = 42;
 
-	static int sumDigits( int n ) {
-		if ( n < 0 )
-			n = -n;
+	static int sumDigits(int number) {
+		if (number < 0)
+			number = -number;
 		int divisor = 1000000000;
-		int r = 0;
-		while ( n > 0 ) {
-			r += n / divisor;
-			n %= divisor;
+		int result = 0;
+		while (number > 0) {
+			result += number / divisor;
+			number %= divisor;
 			divisor /= 10;
 		}
-		return r;
+		return result;
 	}
 
-	static boolean isPrime( int n ) {
-		if ( n < 2 ) {
+	static boolean isPrime(int number) {
+		if (number < 2) {
 			return false;
 		}
 		int i;
-		for (i = 2 ; n % i != 0 && i * i <= n; i++ ) {};
-		return i * i > n;
+		for (i = 2 ; number % i != 0 && i * i <= number; i++) {};
+		return i * i > number;
 	}
 
-	public static void main( String[] args ) {
-		Scanner sc = new Scanner( System.in );
-		int n;
-		int r = 0;
-		while ( sc.hasNextInt() && ( n = sc.nextInt() ) != 42 ) {
-			if ( isPrime( sumDigits( n ) ) ) {
-				r++;
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int number;
+		int result = 0;
+		while (scanner.hasNextInt() && (number = scanner.nextInt())!= LAST) {
+			if (isPrime(sumDigits(number))) {
+				result++;
 			};
 		}
-		System.out.println( "Count of coffee-request - " + r );
+		System.out.println("Count of coffee-request - " + result);
 	}
 }

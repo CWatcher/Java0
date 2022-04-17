@@ -4,18 +4,18 @@ import java.util.Scanner;
 
 class Program {
 
-	public static void main( String[] args ) {
-		Scanner sc = new Scanner(System.in);
-		int n = -1;
-		if ( sc.hasNextInt() ) {
-			n = sc.nextInt();
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int number = -1;
+		if (scanner.hasNextInt()) {
+			number = scanner.nextInt();
 		}
-		if ( n < 2 ) {
-			System.err.println( "IllegalArgument" );
-			System.exit( -1 );
+		if (number < 2) {
+			System.err.println("IllegalArgument");
+			System.exit(-1);
 		}
 		int i = 2;
-		for ( ; n % i != 0 && i * i <= n; i++ ) {};
-		System.out.println( (i * i > n) + " " + (i - 1) );
+		for (; number % i != 0 && i * i <= number; i++) {};
+		System.out.println((i * i > number) + " " + (i - 1));
 	}
 }
