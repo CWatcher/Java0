@@ -6,8 +6,11 @@ class Program {
 
 	public static void main( String[] args ) {
 		Scanner sc = new Scanner(System.in);
-		int n = 0;
-		if ( !sc.hasNextInt() || ( n = sc.nextInt() ) < 2 ) {
+		int n = -1;
+		if ( sc.hasNextInt() ) {
+			n = sc.nextInt();
+		}
+		if ( n < 2 ) {
 			System.out.println( "IllegalArgument" );
 			System.exit( -1 );
 		}
