@@ -11,14 +11,11 @@ class Program {
 			n = sc.nextInt();
 		}
 		if ( n < 2 ) {
-			System.out.println( "IllegalArgument" );
+			System.err.println( "IllegalArgument" );
 			System.exit( -1 );
 		}
 		int i = 2;
 		for ( ; n % i != 0 && i * i <= n; i++ ) {};
-		if ( i * i > n )
-			System.out.println( true + " " + (i - 1) );
-		else
-			System.out.println( false + " " + (i - 1) );
+		System.out.println( (i * i > n) + " " + (i - 1) );
 	}
 }
