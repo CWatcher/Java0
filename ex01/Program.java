@@ -5,9 +5,9 @@ import java.util.Scanner;
 class Program {
 
 	public static void main( String[] args ) {
-		int n = new Scanner(System.in).nextInt();
-
-		if ( n < 2 ) {
+		Scanner sc = new Scanner(System.in);
+		int n = 0;
+		if ( !sc.hasNextInt() || ( n = sc.nextInt() ) < 2 ) {
 			System.out.println( "IllegalArgument" );
 			System.exit( -1 );
 		}
