@@ -1,0 +1,39 @@
+Week 1
+5 4 3 2 1
+Week 2
+5 4 3 2 1
+Week 3
+5 4 3 2 2
+Week 4
+5 4 3 2 2
+Week 5
+5 4 3 3 3
+Week 6
+5 4 3 3 3
+Week 7
+5 4 4 4 4
+Week 8
+5 4 5 4 4
+Week 9
+6 5 5 5 5
+Week 10
+7 6 6 6 5
+Week 11
+9 9 8 7 6
+Week 12
+9 9 9 6 7
+Week 13
+8 9 8 9 7
+Week 14
+8 9 7 9 8
+Week 15
+8 9 8 9 8
+Week 16
+8 9 8 9 8
+Week 17
+9 9 9 9 9
+Week 18
+9 9 9 9 9
+Week 19
+9 9 9 9 9
+

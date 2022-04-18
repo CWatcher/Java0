@@ -30,19 +30,23 @@ public class Program {
 		Scanner scanner = new Scanner(System.in);
 		long grades = 0;
 		long position = 1;
-		for (int i = 1; i <= 18 ; i++) {
-			String string = scanner.next();
-			if (string.equals(END)) {
-				break;
-			}
+		int week;
+		String string = scanner.next();
+		for (week = 1; week <= 18 && !string.equals(END); week++) {
 			if (!string.equals("Week") || !scanner.hasNextInt()
-				|| scanner.nextInt() != i) {
+				|| scanner.nextInt() != week) {
 				System.err.println("IllegalArgument");
 				System.exit(-1);
 			}
 			grades += position * getMinimalGrade(scanner);
 			position *= 10;
+			string = scanner.next();
 		}
+		if (week > 18 && !string.equals(END)) {
+			System.err.println("IllegalArgument");
+			System.exit(-1);
+		}
+		scanner.close();
 		return grades;
 	}
 
