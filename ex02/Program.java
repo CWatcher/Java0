@@ -32,9 +32,14 @@ public class Program {
 		int number;
 		int result = 0;
 		while (scanner.hasNextInt() && (number = scanner.nextInt())!= LAST) {
-			if (isPrime(sumDigits(number))) {
-				result++;
-			};
+			if (number > 1) {
+				if (isPrime(sumDigits(number))) {
+					result++;
+				}
+			}
+			else {
+				System.err.println("IllegalQuery");
+			}
 		}
 		System.out.println("Count of coffee-request - " + result);
 	}
