@@ -3,7 +3,9 @@ package ex04;
 import java.util.Scanner;
 
 public class Program {
-	public static final short ChartSize = 10;
+	static final short	WIDTH = 10;
+	static final short	HEIGHT = 10;
+	static final char	SYMBOL = '#';
 	static class CharFrequency {
 		public char ch;
 		public short fr;
@@ -12,12 +14,28 @@ public class Program {
 		String s = new String(new Scanner(System.in).next());
 		short[] frequencies = new short[(int)Character.MAX_VALUE];
 
+		// Push character frequencies of the string to frequencies[]
 		for (char ch: s.toCharArray())
 			frequencies[(int)ch]++;
 
-		CharFrequency[] charFrequencies = new CharFrequency[ChartSize];
+		// Pop most frequent character frequencies from frequencies[] to charFrequencies[]
+		CharFrequency[] charFrequencies = new CharFrequency[WIDTH];
 		for (int i = 0; i < charFrequencies.length; i++)
 			charFrequencies[i] = popMaxFrequency(frequencies);
+
+		System.out.println();
+		for (int j = 0; j < HEIGHT + 2; j++) {
+			for (int i = 0; i < WIDTH; i++) {
+				int height = charFrequencies[i].fr * HEIGHT / charFrequencies[0].fr;
+				if (j == HEIGHT - height)
+					System.out.print(charFrequencies[i].fr);
+				else if (j == HEIGHT + 1)
+					System.out.print(charFrequencies[i].ch);
+				else if (j > HEIGHT - height)
+					System.out.print(SYMBOL);
+			}
+			System.out.println();
+		}
 	}
 	static CharFrequency popMaxFrequency(short[] frequencies) {
 		CharFrequency charFrequency = new CharFrequency();
