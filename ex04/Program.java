@@ -6,8 +6,7 @@ public class Program {
 	static final short	WIDTH = 10;
 	static final short	HEIGHT = 10;
 	static final char	SYMBOL = '#';
-	static final String	NUM_FORMAT = "%3d";
-	static final String	SPACER = "  ";
+
 	static class CharFrequency {
 		public char ch;
 		public short fr;
@@ -16,16 +15,22 @@ public class Program {
 		String s = new String(new Scanner(System.in).next());
 		CharFrequency[] charFrequencies = getMostFrequentChars(s, WIDTH);
 
+		String WidthFormat = "%4";
+		if (charFrequencies[0].fr < 10)
+			WidthFormat = "%2";
+		else if (charFrequencies[0].fr < 100)
+			WidthFormat = "%3";
+
 		System.out.println();
 		for (int j = 0; j < HEIGHT + 2; j++) {
 			for (int i = 0; i < WIDTH; i++) {
 				int height = charFrequencies[i].fr * HEIGHT / charFrequencies[0].fr;
 				if (j == HEIGHT - height)
-					System.out.printf(NUM_FORMAT, charFrequencies[i].fr);
+					System.out.printf(WidthFormat + 'd', charFrequencies[i].fr);
 				else if (j == HEIGHT + 1)
-					System.out.print(SPACER + charFrequencies[i].ch);
+					System.out.printf(WidthFormat + 'c', charFrequencies[i].ch);
 				else if (j > HEIGHT - height)
-					System.out.print(SPACER + SYMBOL);
+					System.out.printf(WidthFormat + 'c', SYMBOL);
 			}
 			System.out.println();
 		}
