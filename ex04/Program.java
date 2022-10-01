@@ -6,6 +6,8 @@ public class Program {
 	static final short	WIDTH = 10;
 	static final short	HEIGHT = 10;
 	static final char	SYMBOL = '#';
+	static final String	NUM_FORMAT = "%3d";
+	static final String	SPACER = "  ";
 	static class CharFrequency {
 		public char ch;
 		public short fr;
@@ -19,11 +21,11 @@ public class Program {
 			for (int i = 0; i < WIDTH; i++) {
 				int height = charFrequencies[i].fr * HEIGHT / charFrequencies[0].fr;
 				if (j == HEIGHT - height)
-					System.out.print(charFrequencies[i].fr);
+					System.out.printf(NUM_FORMAT, charFrequencies[i].fr);
 				else if (j == HEIGHT + 1)
-					System.out.print(charFrequencies[i].ch);
+					System.out.print(SPACER + charFrequencies[i].ch);
 				else if (j > HEIGHT - height)
-					System.out.print(SYMBOL);
+					System.out.print(SPACER + SYMBOL);
 			}
 			System.out.println();
 		}
