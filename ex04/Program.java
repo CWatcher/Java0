@@ -12,16 +12,7 @@ public class Program {
 	}
 	public static void main(String[] args) {
 		String s = new String(new Scanner(System.in).next());
-		short[] frequencies = new short[(int)Character.MAX_VALUE];
-
-		// Push character frequencies of the string to frequencies[]
-		for (char ch: s.toCharArray())
-			frequencies[(int)ch]++;
-
-		// Pop most frequent character frequencies from frequencies[] to charFrequencies[]
-		CharFrequency[] charFrequencies = new CharFrequency[WIDTH];
-		for (int i = 0; i < charFrequencies.length; i++)
-			charFrequencies[i] = popMaxFrequency(frequencies);
+		CharFrequency[] charFrequencies = getMostFrequentChars(s, WIDTH);
 
 		System.out.println();
 		for (int j = 0; j < HEIGHT + 2; j++) {
@@ -36,6 +27,19 @@ public class Program {
 			}
 			System.out.println();
 		}
+	}
+	static CharFrequency[] getMostFrequentChars(String s, short n) {
+		short[] frequencies = new short[(int)Character.MAX_VALUE];
+
+		// Push character frequencies of the string to frequencies[]
+		for (char ch: s.toCharArray())
+			frequencies[(int)ch]++;
+
+		// Pop most frequent character frequencies from frequencies[] to charFrequencies[]
+		CharFrequency[] charFrequencies = new CharFrequency[n];
+		for (int i = 0; i < charFrequencies.length; i++)
+			charFrequencies[i] = popMaxFrequency(frequencies);
+		return charFrequencies;
 	}
 	static CharFrequency popMaxFrequency(short[] frequencies) {
 		CharFrequency charFrequency = new CharFrequency();
