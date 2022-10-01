@@ -24,13 +24,15 @@ public class Program {
 		System.out.println();
 		for (int j = 0; j < HEIGHT + 2; j++) {
 			for (int i = 0; i < WIDTH; i++) {
-				int height = charFrequencies[i].fr * HEIGHT / charFrequencies[0].fr;
-				if (j == HEIGHT - height)
-					System.out.printf(WidthFormat + 'd', charFrequencies[i].fr);
-				else if (j == HEIGHT + 1)
-					System.out.printf(WidthFormat + 'c', charFrequencies[i].ch);
-				else if (j > HEIGHT - height)
-					System.out.printf(WidthFormat + 'c', SYMBOL);
+				if (charFrequencies[i].fr > 0) {
+					int height = charFrequencies[i].fr * HEIGHT / charFrequencies[0].fr;
+					if (j == HEIGHT - height)
+						System.out.printf(WidthFormat + 'd', charFrequencies[i].fr);
+					else if (j == HEIGHT + 1)
+						System.out.printf(WidthFormat + 'c', charFrequencies[i].ch);
+					else if (j > HEIGHT - height)
+						System.out.printf(WidthFormat + 'c', SYMBOL);
+				}
 			}
 			System.out.println();
 		}
