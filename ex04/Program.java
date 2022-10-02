@@ -23,29 +23,28 @@ public class Program {
 
 		System.out.println();
 		for (int j = 0; j < HEIGHT + 2; j++) {
-			for (int i = 0; i < WIDTH; i++) {
-				if (charFrequencies[i].fr > 0) {
-					int height = charFrequencies[i].fr * HEIGHT / charFrequencies[0].fr;
-					if (j == HEIGHT - height)
-						System.out.printf(WidthFormat + 'd', charFrequencies[i].fr);
-					else if (j == HEIGHT + 1)
-						System.out.printf(WidthFormat + 'c', charFrequencies[i].ch);
-					else if (j > HEIGHT - height)
-						System.out.printf(WidthFormat + 'c', SYMBOL);
-				}
+			for (int i = 0; i < charFrequencies.length; i++) {
+				int height = charFrequencies[i].fr * HEIGHT / charFrequencies[0].fr;
+				if (j == HEIGHT - height)
+					System.out.printf(WidthFormat + 'd', charFrequencies[i].fr);
+				else if (j == HEIGHT + 1)
+					System.out.printf(WidthFormat + 'c', charFrequencies[i].ch);
+				else if (j > HEIGHT - height)
+					System.out.printf(WidthFormat + 'c', SYMBOL);
 			}
 			System.out.println();
 		}
 	}
 	static CharFrequency[] getMostFrequentChars(String s, short n) {
-		short[] frequencies = new short[(int)Character.MAX_VALUE];
+		short[]	frequencies = new short[(int)Character.MAX_VALUE];
+		short	nChars = 0;
 
 		// Push character frequencies of the string to frequencies[]
 		for (char ch: s.toCharArray())
-			frequencies[(int)ch]++;
-
+			if (frequencies[(int)ch]++ == 0)
+				nChars++;
 		// Pop most frequent character frequencies from frequencies[] to charFrequencies[]
-		CharFrequency[] charFrequencies = new CharFrequency[n];
+		CharFrequency[] charFrequencies = new CharFrequency[n < nChars ? n : nChars];
 		for (int i = 0; i < charFrequencies.length; i++)
 			charFrequencies[i] = popMaxFrequency(frequencies);
 		return charFrequencies;
