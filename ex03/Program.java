@@ -7,19 +7,19 @@ public class Program {
 	private static final String END = "42";
 	private static final int TESTS_IN_A_WEEK = 5;
 
+	private static void fail() {
+		System.err.println("IllegalArgument");
+		System.exit(-1);
+	}
 	private static int getMinimalGrade(Scanner scanner) {
 		int minimalGrade = 9;
 		int grade;
 		for (int i = 0; i < TESTS_IN_A_WEEK; i++) {
-			if (!scanner.hasNextInt()) {
-				System.err.println("IllegalArgument");
-				System.exit(-1);
-			}
+			if (!scanner.hasNextInt())
+				fail();
 			grade = scanner.nextInt();
-			if (grade < 1 || grade > 9) {
-				System.err.println("IllegalArgument");
-				System.exit(-1);
-			}
+			if (grade < 1 || grade > 9)
+				fail();
 			if (minimalGrade > grade)
 				minimalGrade = grade;
 		}
@@ -34,18 +34,14 @@ public class Program {
 		String string = scanner.next();
 		for (week = 1; week <= 18 && !string.equals(END); week++) {
 			if (!string.equals("Week") || !scanner.hasNextInt()
-				|| scanner.nextInt() != week) {
-				System.err.println("IllegalArgument");
-				System.exit(-1);
-			}
+				|| scanner.nextInt() != week)
+				fail();
 			grades += position * getMinimalGrade(scanner);
 			position *= 10;
 			string = scanner.next();
 		}
-		if (week > 18 && !string.equals(END)) {
-			System.err.println("IllegalArgument");
-			System.exit(-1);
-		}
+		if (week > 18 && !string.equals(END))
+			fail();
 		scanner.close();
 		return grades;
 	}
