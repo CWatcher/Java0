@@ -19,9 +19,8 @@ public class Program {
 	}
 
 	static boolean isPrime(int number) {
-		if (number < 2) {
+		if (number < 2)
 			return false;
-		}
 		int i;
 		for (i = 2 ; number % i != 0 && i * i <= number; i++) {};
 		return i * i > number;
@@ -33,9 +32,8 @@ public class Program {
 		int result = 0;
 		while (scanner.hasNextInt() && (number = scanner.nextInt())!= LAST) {
 			if (number > 1) {
-				if (isPrime(sumDigits(number))) {
+				if (isPrime(sumDigits(number)))
 					result++;
-				}
 			}
 			else {
 				System.err.println("IllegalQuery");
