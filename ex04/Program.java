@@ -44,6 +44,7 @@ public class Program {
 		char[] mostFrequentChars = new char[n < nChars ? n : nChars];
 		for (int i = 0; i < mostFrequentChars.length; i++)
 			mostFrequentChars[i] = popMostFrequentChar(charFrequencies);
+		// Unhide the most frequent chars
 		for (int i = 0; i < charFrequencies.length; i++)
 			if (charFrequencies[i] < 0)
 				charFrequencies[i] = -charFrequencies[i];
@@ -54,6 +55,7 @@ public class Program {
 		for (int i = 0; i < frequencies.length; i++)
 			if (frequencies[i] > frequencies[mostFrequentChar])
 				mostFrequentChar = (char)i;
+		// Hide the most frequent char
 		frequencies[mostFrequentChar] = -frequencies[mostFrequentChar];
 		return mostFrequentChar;
 	}
