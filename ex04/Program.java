@@ -45,16 +45,16 @@ public class Program {
 		for (int i = 0; i < mostFrequentChars.length; i++)
 			mostFrequentChars[i] = popMostFrequentChar(charFrequencies);
 		// Unhide the most frequent chars
-		for (int i = 0; i < charFrequencies.length; i++)
-			if (charFrequencies[i] < 0)
-				charFrequencies[i] = -charFrequencies[i];
+		for (char ch = 0; ch < charFrequencies.length; ch++)
+			if (charFrequencies[ch] < 0)
+				charFrequencies[ch] = -charFrequencies[ch];
 		return mostFrequentChars;
 	}
 	static char popMostFrequentChar(int[] frequencies) {
 		char mostFrequentChar = 0;
-		for (int i = 0; i < frequencies.length; i++)
-			if (frequencies[i] > frequencies[mostFrequentChar])
-				mostFrequentChar = (char)i;
+		for (char ch = 0; ch < frequencies.length; ch++)
+			if (frequencies[ch] > frequencies[mostFrequentChar])
+				mostFrequentChar = ch;
 		// Hide the most frequent char
 		frequencies[mostFrequentChar] = -frequencies[mostFrequentChar];
 		return mostFrequentChar;
