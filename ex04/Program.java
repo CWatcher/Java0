@@ -7,56 +7,54 @@ public class Program {
 	static final short	HEIGHT = 10;
 	static final char	SYMBOL = '#';
 
-	static class CharFrequency {
-		public char ch;
-		public short fr;
-	}
+	static int[] charFrequencies = new int[Character.MAX_VALUE];
 	public static void main(String[] args) {
-		String s = new String(new Scanner(System.in).next());
-		CharFrequency[] charFrequencies = getMostFrequentChars(s, WIDTH);
+		String s = new Scanner(System.in).next();
+		char[] mostFrequentChars = getMostFrequentChars(s, WIDTH);
+		char mostFrequentChar = mostFrequentChars[0];
 
 		String WidthFormat = "%4";
-		if (charFrequencies[0].fr < 10)
+		if (charFrequencies[mostFrequentChar] < 10)
 			WidthFormat = "%2";
-		else if (charFrequencies[0].fr < 100)
+		else if (charFrequencies[mostFrequentChar] < 100)
 			WidthFormat = "%3";
 
 		System.out.println();
 		for (int j = 0; j < HEIGHT + 2; j++) {
-			for (int i = 0; i < charFrequencies.length; i++) {
-				int height = charFrequencies[i].fr * HEIGHT / charFrequencies[0].fr;
+			for (int i = 0; i < mostFrequentChars.length; i++) {
+				int height = charFrequencies[mostFrequentChars[i]] * HEIGHT / charFrequencies[mostFrequentChar];
 				if (j == HEIGHT - height)
-					System.out.printf(WidthFormat + 'd', charFrequencies[i].fr);
+					System.out.printf(WidthFormat + 'd', charFrequencies[mostFrequentChars[i]]);
 				else if (j == HEIGHT + 1)
-					System.out.printf(WidthFormat + 'c', charFrequencies[i].ch);
+					System.out.printf(WidthFormat + 'c', mostFrequentChars[i]);
 				else if (j > HEIGHT - height)
 					System.out.printf(WidthFormat + 'c', SYMBOL);
 			}
 			System.out.println();
 		}
 	}
-	static CharFrequency[] getMostFrequentChars(String s, short n) {
-		short[]	frequencies = new short[(int)Character.MAX_VALUE];
+	static char[] getMostFrequentChars(String s, short n) {
 		short	nChars = 0;
 
 		// Push character frequencies of the string to frequencies[]
 		for (char ch: s.toCharArray())
-			if (frequencies[(int)ch]++ == 0)
+			if (charFrequencies[ch]++ == 0)
 				nChars++;
-		// Pop most frequent character frequencies from frequencies[] to charFrequencies[]
-		CharFrequency[] charFrequencies = new CharFrequency[n < nChars ? n : nChars];
+		// Pop most frequent character frequencies from frequencies[] to mostFrequentChars[]
+		char[] mostFrequentChars = new char[n < nChars ? n : nChars];
+		for (int i = 0; i < mostFrequentChars.length; i++)
+			mostFrequentChars[i] = popMostFrequentChar(charFrequencies);
 		for (int i = 0; i < charFrequencies.length; i++)
-			charFrequencies[i] = popMaxFrequency(frequencies);
-		return charFrequencies;
+			if (charFrequencies[i] < 0)
+				charFrequencies[i] = -charFrequencies[i];
+		return mostFrequentChars;
 	}
-	static CharFrequency popMaxFrequency(short[] frequencies) {
-		CharFrequency charFrequency = new CharFrequency();
+	static char popMostFrequentChar(int[] frequencies) {
+		char mostFrequentChar = 0;
 		for (int i = 0; i < frequencies.length; i++)
-			if (frequencies[i] > charFrequency.fr) {
-				charFrequency.ch = (char)i;
-				charFrequency.fr = frequencies[i];
-			}
-		frequencies[(int)charFrequency.ch] = 0;
-		return charFrequency;
+			if (frequencies[i] > frequencies[mostFrequentChar])
+				mostFrequentChar = (char)i;
+		frequencies[mostFrequentChar] = -frequencies[mostFrequentChar];
+		return mostFrequentChar;
 	}
 }
