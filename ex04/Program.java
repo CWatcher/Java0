@@ -3,11 +3,12 @@ package ex04;
 import java.util.Scanner;
 
 public class Program {
-	static final short	WIDTH = 10;
-	static final short	HEIGHT = 10;
-	static final char	SYMBOL = '#';
+	private static final short	WIDTH = 10;
+	private static final short	HEIGHT = 10;
+	private static final char	SYMBOL = '#';
 
-	static int[] charFrequencies = new int[Character.MAX_VALUE];
+	private static int[] charFrequencies = new int[Character.MAX_VALUE];
+
 	public static void main(String[] args) {
 		String s = new Scanner(System.in).next();
 		char[] mostFrequentChars = getMostFrequentChars(s, WIDTH);
@@ -33,7 +34,7 @@ public class Program {
 			System.out.println();
 		}
 	}
-	static char[] getMostFrequentChars(String s, short n) {
+	private static char[] getMostFrequentChars(String s, short n) {
 		short	nChars = 0;
 
 		// Push character frequencies of the string to frequencies[]
@@ -50,7 +51,7 @@ public class Program {
 				charFrequencies[ch] = -charFrequencies[ch];
 		return mostFrequentChars;
 	}
-	static char popMostFrequentChar(int[] frequencies) {
+	private static char popMostFrequentChar(int[] frequencies) {
 		char mostFrequentChar = 0;
 		for (char ch = 0; ch < frequencies.length; ch++)
 			if (frequencies[ch] > frequencies[mostFrequentChar])
