@@ -26,18 +26,18 @@ public static void main(String[] args) {
 static void init() {
 	Scanner sc = new Scanner(System.in);
 
-	for (int i = 0; !sc.hasNext("."); i++)
+	for (int i = 0; !sc.hasNext("\\."); i++)
 		students[i] = sc.next();
 	sc.next();
 
-	while (!sc.hasNext(".")) {
+	while (!sc.hasNext("\\.")) {
 		int hour = sc.nextInt();
 		int weekDay = indexOf(weekDays, sc.next());
 		timetable[weekDay][hour] = true;
 	}
 	sc.next();
 
-	while (!sc.hasNext(".")) {
+	while (!sc.hasNext("\\.")) {
 		int student = indexOf(students, sc.next());
 		int hour = sc.nextInt();
 		int dayOfMonth = sc.nextInt();
