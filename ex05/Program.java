@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Program {
 
 final static int STUDENTS_N_MAX = 10;
+final static int NAME_LEN_MAX = 10;
 final static int HOURS_MAX = 6;
 final static int DAYS_PER_WEEK = 7;
 final static String[] weekDays = new String[]{"MO", "TU", "WE", "TH", "FR", "SA", "SU"};
@@ -50,6 +51,7 @@ static int indexOf(String[] ss, String s) {
 }
 
 static void printTimetable() {
+	System.out.printf("%" + NAME_LEN_MAX + "s", "");
 	for (int d = 1; d <= DAYS_IN_SEPTEMBER ; d++) {
 		int weekDay = (d + WEEK_OUTRUN - 1) % DAYS_PER_WEEK;
 		for (int h = 1; h <= HOURS_MAX; h++)
