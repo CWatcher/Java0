@@ -17,10 +17,7 @@ static int[][][] attendances = new int[STUDENTS_N_MAX][DAYS_IN_SEPTEMBER + 1][HO
 
 public static void main(String[] args) {
 	init();
-	for (int d = 1; d <= DAYS_IN_SEPTEMBER ; d++)
-		for (int h = 1; h <= HOURS_MAX; h++)
-			if (timetable[(d + WEEK_OUTRUN - 1) % DAYS_PER_WEEK][h])
-				System.out.printf("%d", h);
+	printTimetable();
 }
 
 static void init() {
@@ -50,6 +47,16 @@ static int indexOf(String[] ss, String s) {
 		if (s.equals(ss[i]))
 			return i;
 	return -1;
+}
+
+static void printTimetable() {
+	for (int d = 1; d <= DAYS_IN_SEPTEMBER ; d++) {
+		int weekDay = (d + WEEK_OUTRUN - 1) % DAYS_PER_WEEK;
+		for (int h = 1; h <= HOURS_MAX; h++)
+			if (timetable[weekDay][h])
+				System.out.printf("%d:00 %s %2d|", h, weekDays[weekDay], d);
+	}
+	System.out.println();
 }
 
 }
