@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class Program {
 
 final static int STUDENTS_N_MAX = 10;
-final static int NAME_LEN_MAX = 10;
+final static int CELL_WIDTH = 10;
+final static String CELL_FORMAT = "%" + CELL_WIDTH + "s";
 final static int HOURS_MAX = 6;
 final static int DAYS_PER_WEEK = 7;
 final static String[] weekDays = new String[]{"MO", "TU", "WE", "TH", "FR", "SA", "SU"};
@@ -19,6 +20,7 @@ static int[][][] attendances = new int[STUDENTS_N_MAX][DAYS_IN_SEPTEMBER + 1][HO
 public static void main(String[] args) {
 	init();
 	printTimetable();
+	printAttendances();
 }
 
 static void init() {
@@ -51,7 +53,7 @@ static int indexOf(String[] ss, String s) {
 }
 
 static void printTimetable() {
-	System.out.printf("%" + NAME_LEN_MAX + "s", "");
+	System.out.printf(CELL_FORMAT, "");
 	for (int d = 1; d <= DAYS_IN_SEPTEMBER ; d++) {
 		int weekDay = (d + WEEK_OUTRUN - 1) % DAYS_PER_WEEK;
 		for (int h = 1; h <= HOURS_MAX; h++)
@@ -59,6 +61,23 @@ static void printTimetable() {
 				System.out.printf("%d:00 %s %2d|", h, weekDays[weekDay], d);
 	}
 	System.out.println();
+}
+
+static void printAttendances() {
+	for (int i = 0; students[i] != null; i++) {
+		System.out.printf(CELL_FORMAT, students[i]);
+		for (int d = 1; d <= DAYS_IN_SEPTEMBER ; d++) {
+			int weekDay = (d + WEEK_OUTRUN - 1) % DAYS_PER_WEEK;
+			for (int h = 1; h <= HOURS_MAX; h++)
+				if (timetable[weekDay][h]) {
+					if (attendances[i][d][h] == 0)
+						System.out.printf(CELL_FORMAT + "|", "");
+					else
+						System.out.printf(CELL_FORMAT + "|", "" + attendances[i][d][h]);
+				}
+		}
+		System.out.println();
+	}
 }
 
 }
