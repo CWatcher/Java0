@@ -15,7 +15,7 @@ final static int WEEK_OUTRUN = 1;
 
 static String[] students = new String[STUDENTS_N_MAX];
 static boolean[][] timetable = new boolean[DAYS_PER_WEEK][HOURS_MAX + 1];
-static int[][][] attendances = new int[STUDENTS_N_MAX][DAYS_IN_SEPTEMBER + 1][HOURS_MAX + 1];
+static String[][][] attendances = new String[STUDENTS_N_MAX][DAYS_IN_SEPTEMBER + 1][HOURS_MAX + 1];
 
 public static void main(String[] args) {
 	init();
@@ -41,7 +41,7 @@ static void init() {
 		int student = indexOf(students, sc.next());
 		int hour = sc.nextInt();
 		int dayOfMonth = sc.nextInt();
-		attendances[student][dayOfMonth][hour] = sc.next().equals("HERE") ? 1 : -1;
+		attendances[student][dayOfMonth][hour] = sc.next().equals("HERE") ? "1" : "-1";
 	}
 }
 
@@ -69,12 +69,8 @@ static void printAttendances() {
 		for (int d = 1; d <= DAYS_IN_SEPTEMBER ; d++) {
 			int weekDay = (d + WEEK_OUTRUN - 1) % DAYS_PER_WEEK;
 			for (int h = 1; h <= HOURS_MAX; h++)
-				if (timetable[weekDay][h]) {
-					if (attendances[i][d][h] == 0)
-						System.out.printf(CELL_FORMAT + "|", "");
-					else
-						System.out.printf(CELL_FORMAT + "|", "" + attendances[i][d][h]);
-				}
+				if (timetable[weekDay][h])
+					System.out.printf(CELL_FORMAT + "|", attendances[i][d][h] == null ? "" : attendances[i][d][h]);
 		}
 		System.out.println();
 	}
